@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Juan",
+    "last_name": "Pérez",
+    "company_name": "Meat Products Company"
+  },
+  {
+    "id": 2,
+    "name": "María",
+    "last_name": "González",
+    "company_name": "Flour Company"
+  },
+  {
+    "id": 3,
+    "name": "Carlos",
+    "last_name": "Martínez",
+    "company_name": "Egg Company"
+  },
+  {
+    "id": 4,
+    "name": "Ana",
+    "last_name": "López",
+    "company_name": "Cheese Company"
+  },
+  {
+    "id": 5,
+    "name": "Luis",
+    "last_name": "Rodríguez",
+    "company_name": "Sweets Company"
+  },
+  {
+    "id": 6,
+    "name": "Karen",
+    "last_name": "Moreno",
+    "company_name": "Oil Company"
+  },
+  {
+    "id": 7,
+    "name": "Yina",
+    "last_name": "Moreno",
+    "company_name": "Salt Company"
+  }
+]

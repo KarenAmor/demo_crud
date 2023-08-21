@@ -1,0 +1,62 @@
+[
+  {
+    "company_name": "Meat Products Company",
+    "product": "Cold Cuts",
+    "cost": 540
+  },
+  {
+    "company_name": "Meat Products Company",
+    "product": "Sausages",
+    "cost": 180
+  },
+  {
+    "company_name": "Flour Company",
+    "product": "Flour",
+    "cost": 150
+  },
+  {
+    "company_name": "Flour Company",
+    "product": "Bread",
+    "cost": 200
+  },
+  {
+    "company_name": "Egg Company",
+    "product": "Eggs",
+    "cost": 90
+  },
+  {
+    "company_name": "Egg Company",
+    "product": "Tortillas",
+    "cost": 50
+  },
+  {
+    "company_name": "Cheese Company",
+    "product": "Cheese",
+    "cost": 430
+  },
+  {
+    "company_name": "Cheese Company",
+    "product": "Cream",
+    "cost": 120
+  },
+  {
+    "company_name": "Sweets Company",
+    "product": "Sugar",
+    "cost": 110
+  },
+  {
+    "company_name": "Sweets Company",
+    "product": "Chocolates",
+    "cost": 250
+  },
+  {
+    "company_name": "Oil Company",
+    "product": "Oil",
+    "cost": 220
+  },
+  {
+    "company_name": "Oil Company",
+    "product": "Butter",
+    "cost": 100
+  }
+]
