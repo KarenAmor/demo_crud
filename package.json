@@ -1,12 +1,12 @@
 {
   "name": "demo",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "API permite gestionar proveedores y productos a través de operaciones CRUD (Crear, Leer, Actualizar, Eliminar)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Moreno Karen",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2"
