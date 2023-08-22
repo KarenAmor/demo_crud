@@ -12,7 +12,7 @@ app.use(express.json());
 // Usa las rutas
 app.use('/proveedores', proveedorRoutes)
 app.use('/productos',  productosRoutes);
-app.use('/users', usersRoutes);
+app.use('/userios', usersRoutes);
 
 // Inicia el servidor
 const port = process.env.PORT || 3000;

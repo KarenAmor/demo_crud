@@ -25,6 +25,10 @@ Esta API permite gestionar proveedores y productos a través de operaciones CRUD
 - `PUT /productos`: Modificar un producto existente.
 - `DELETE /productos`: Eliminar un producto por su nombre.
 
+### Usuarios
+
+- `POST /usuarios`: Agregar un nuevo usuario.
+
 ## Contribución
 
 Si encuentras errores o tienes mejoras para esta API, siéntete libre de crear un Pull Request o una Issue en este repositorio.
