@@ -13,5 +13,10 @@
     "id": 3,
     "username": "Manuel Blandon",
     "password": "$2b$10$AI0oE4vJEEI8XjS7RppM8OHJITimrNyGrSww.Bk61t5FZoil6pi/y"
+  },
+  {
+    "id": 4,
+    "username": "Karon Jimenez",
+    "password": "$2b$10$9bYQnYS.OBOevHWTMU4AaeAmvvWR9MHG/8x9UrDRwDuVsARr.CA2q"
   }
 ]
