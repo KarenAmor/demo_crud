@@ -48,7 +48,7 @@ const agregarProveedor = (nuevoProveedor, res) => {
                 manejarError(res, 'Error al escribir en el archivo JSON:', writeErr);
                 return;
             }
-            res.status(201).json({ message: 'Proveedor creado exitosamente' });
+            res.status(201).json({ message: 'Proveedor creado exitosamente', proveedor: nuevoProveedor });
         });
     });
 };
@@ -62,13 +62,14 @@ const modificarProveedor = (nuevoProveedor, res) => {
         const proveedores = JSON.parse(data);
         const proveedorExistenteIndex = proveedores.findIndex(proveedor => proveedor.id === nuevoProveedor.id);
         if (proveedorExistenteIndex !== -1) {
+            const proveedorAnterior = proveedores[proveedorExistenteIndex];
             proveedores[proveedorExistenteIndex] = nuevoProveedor;
             fs.writeFile(databasePath, JSON.stringify(proveedores, null, 2), 'utf8', writeErr => {
                 if (writeErr) {
                     manejarError(res, 'Error al escribir en el archivo JSON:', writeErr);
                     return;
                 }
-                res.status(200).json({ message: 'Proveedor modificado exitosamente' });
+                res.status(200).json({ message: 'Proveedor modificado exitosamente', proveedorAnterior, proveedorModificado: nuevoProveedor});
             });
         } else {
             res.status(404).json({ error: 'Proveedor no encontrado' });
@@ -85,13 +86,13 @@ const eliminarProveedor = (id, res) => {
         const proveedores = JSON.parse(data); 
         const proveedorIndex = proveedores.findIndex(proveedor => proveedor.id === id); 
         if (proveedorIndex !== -1) {
-            proveedores.splice(proveedorIndex, 1);
+            const proveedorEliminado = proveedores.splice(proveedorIndex, 1)[0];
             fs.writeFile(databasePath, JSON.stringify(proveedores, null, 2), 'utf8', writeErr => {
                 if (writeErr) {
                     manejarError(res, 'Error al escribir en el archivo JSON:', writeErr);
                     return;
                 }
-                res.status(200).json({ message: 'Proveedor eliminado exitosamente' });
+                res.status(200).json({ message: 'Proveedor eliminado exitosamente', proveedorEliminado });
             });
         } else {
             res.status(404).json({ error: 'Proveedor no encontrado' });

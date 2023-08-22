@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "username": "Karen Moreno",
+    "password": "$2b$10$OZ1dXoLp5/7iZi/IeFPcHu1NIs/MNMXG.."
+  },
+  {
+    "id": 2,
+    "username": "Edith Moreno",
+    "password": "$2b$10$Mowc94rAti4RNBrPpmtUJeRY1tbhX8eAaBWyvJJ7GiTfYCB1Lu5Ya"
+  },
+  {
+    "id": 3,
+    "username": "Manuel Blandon",
+    "password": "$2b$10$AI0oE4vJEEI8XjS7RppM8OHJITimrNyGrSww.Bk61t5FZoil6pi/y"
+  }
+]

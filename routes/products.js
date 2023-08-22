@@ -17,8 +17,8 @@ router.put('/', (req, res) => {
 });
 
 router.delete('/', (req, res) => {
-    const { product } = req.body; 
-    productsController.eliminarProducto(product, res);
+    const { id } = req.body; 
+    productsController.eliminarProducto(id, res);
 });
 
 module.exports = router;

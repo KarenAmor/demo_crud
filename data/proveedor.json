@@ -40,5 +40,11 @@
     "name": "Yina",
     "last_name": "Moreno",
     "company_name": "Salt Company"
+  },
+  {
+    "id": 8,
+    "name": "Yina",
+    "last_name": "Gomez",
+    "company_name": "Water Company"
   }
 ]

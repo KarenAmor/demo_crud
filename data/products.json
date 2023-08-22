@@ -1,62 +1,86 @@
 [
   {
+    "id": 1,
     "company_name": "Meat Products Company",
     "product": "Cold Cuts",
     "cost": 540
   },
   {
+    "id": 2,
     "company_name": "Meat Products Company",
     "product": "Sausages",
     "cost": 180
   },
   {
+    "id": 3,
     "company_name": "Flour Company",
     "product": "Flour",
     "cost": 150
   },
   {
+    "id": 4,
     "company_name": "Flour Company",
     "product": "Bread",
     "cost": 200
   },
   {
+    "id": 5,
     "company_name": "Egg Company",
     "product": "Eggs",
     "cost": 90
   },
   {
+    "id": 6,
     "company_name": "Egg Company",
     "product": "Tortillas",
     "cost": 50
   },
   {
+    "id": 7,
     "company_name": "Cheese Company",
     "product": "Cheese",
     "cost": 430
   },
   {
+    "id": 8,
     "company_name": "Cheese Company",
     "product": "Cream",
     "cost": 120
   },
   {
+    "id": 9,
     "company_name": "Sweets Company",
     "product": "Sugar",
     "cost": 110
   },
   {
+    "id": 10,
     "company_name": "Sweets Company",
     "product": "Chocolates",
     "cost": 250
   },
   {
+    "id": 11,
+    "company_name": "Oil Company",
+    "product": "Butter",
+    "cost": 100
+  },
+  {
+    "id": 12,
+    "company_name": "Oil Company",
+    "product": "Sunflower Oil",
+    "cost": 220
+  },
+  {
+    "id": 13,
     "company_name": "Oil Company",
     "product": "Oil",
     "cost": 220
   },
   {
-    "company_name": "Oil Company",
-    "product": "Butter",
+    "id": 14,
+    "company_name": "Water Company",
+    "product": "Water",
     "cost": 100
   }
 ]

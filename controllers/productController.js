@@ -32,26 +32,7 @@ const obtenerCompanyName = (req, res) => {
             res.status(404).json({ error: 'Compañia no encontrada' });
         }
     });
-}
-const obtenerProducto = (req, res) => {
-    const product = req.params.product;
-    fs.readFile(databasePath, 'utf8', (err, data) => {
-        if (err) {
-            manejarError(res, 'Error al leer el archivo JSON:', err);
-            return;
-        }
-        const productos = JSON.parse(data);
-        console.log("productos: ", productos)
-        const producto = productos.find(producto => producto.product === product);
-        if (producto) {
-            res.status(200).json(producto);
-        } else {
-            res.status(404).json({ error: 'Producto no encontrado' });
-        }
-    });
 };
-
-
 
 const agregarProducto = (nuevoProducto, res) => {
     fs.readFile(databasePath, 'utf8', (err, data) => {
@@ -66,7 +47,7 @@ const agregarProducto = (nuevoProducto, res) => {
                 manejarError(res, 'Error al escribir en el archivo JSON:', writeErr);
                 return;
             }
-            res.status(201).json({ message: 'Producto creado exitosamente' });
+            res.status(201).json({ message: 'Producto creado exitosamente' , producto: nuevoProducto  });
         });
     });
 };
@@ -78,15 +59,16 @@ const modificarProducto = (nuevoProducto, res) => {
             return;
         }
         const productos = JSON.parse(data);
-        const productoExistenteIndex = productos.findIndex(producto => producto.product === nuevoProducto.product);
+        const productoExistenteIndex = productos.findIndex(producto => producto.id === nuevoProducto.id);
         if (productoExistenteIndex !== -1) {
+            const productoAnterior = productos[productoExistenteIndex];
             productos[productoExistenteIndex] = nuevoProducto;
             fs.writeFile(databasePath, JSON.stringify(productos, null, 2), 'utf8', writeErr => {
                 if (writeErr) {
                     manejarError(res, 'Error al escribir en el archivo JSON:', writeErr);
                     return;
                 }
-                res.status(200).json({ message: 'Producto modificado exitosamente' });
+                res.status(200).json({ message: 'Producto modificado exitosamente', productoAnterior, productoModificado: nuevoProducto });
             });
         } else {
             res.status(404).json({ error: 'Producto no encontrado' });
@@ -94,22 +76,22 @@ const modificarProducto = (nuevoProducto, res) => {
     });
 };
 
-const eliminarProducto = (product, res) => {
+const eliminarProducto = (id, res) => {
     fs.readFile(databasePath, 'utf8', (err, data) => {
         if (err) {
             manejarError(res, 'Error al leer el archivo JSON:', err);
             return;
         }
         const productos = JSON.parse(data);
-        const productoIndex = productos.findIndex(producto => producto.product === product);
+        const productoIndex = productos.findIndex(producto => producto.id === id);
         if (productoIndex !== -1) {
-            productos.splice(productoIndex, 1);
+            const productoEliminado = productos.splice(productoIndex, 1)[0];
             fs.writeFile(databasePath, JSON.stringify(productos, null, 2), 'utf8', writeErr => {
                 if (writeErr) {
                     manejarError(res, 'Error al escribir en el archivo JSON:', writeErr);
                     return;
                 }
-                res.status(200).json({ message: 'Producto eliminado exitosamente' });
+                res.status(200).json({ message: 'Producto eliminado exitosamente', productoEliminado });
             });
         } else {
             res.status(404).json({ error: 'Producto no encontrado' });
@@ -120,7 +102,6 @@ const eliminarProducto = (product, res) => {
 module.exports = {
     leerProducto,
     obtenerCompanyName,
-    obtenerProducto,
     agregarProducto,
     modificarProducto,
     eliminarProducto 
