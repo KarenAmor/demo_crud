@@ -4,6 +4,7 @@ Esta API permite gestionar proveedores y productos a través de operaciones CRUD
 
 ## Librerias
 - uuid
+- Joi
 
 ## Uso
 
@@ -19,8 +20,6 @@ Esta API permite gestionar proveedores y productos a través de operaciones CRUD
 - `POST /proveedores`: Agregar un nuevo proveedor.
 - `PUT /proveedores`: Modificar un proveedor existente.
 - `DELETE /proveedores`: Eliminar un proveedor por su ID.
-
-### Productos
 
 ### Productos
 
