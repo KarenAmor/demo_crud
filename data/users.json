@@ -1,22 +1,12 @@
 [
   {
-    "id": 1,
-    "username": "Karen Moreno",
-    "password": "$2b$10$OZ1dXoLp5/7iZi/IeFPcHu1NIs/MNMXG.."
+    "id": "17c97725-f822-4edb-b791-11e85c120d23",
+    "username": "Karen Blandon",
+    "password": "$2b$10$7XsuYU4HGJW4lbCWxqJVre8kIakZ5WvEeXFFYSjsCJhvXwQXhLe42"
   },
   {
-    "id": 2,
-    "username": "Edith Moreno",
-    "password": "$2b$10$Mowc94rAti4RNBrPpmtUJeRY1tbhX8eAaBWyvJJ7GiTfYCB1Lu5Ya"
-  },
-  {
-    "id": 3,
-    "username": "Manuel Blandon",
-    "password": "$2b$10$AI0oE4vJEEI8XjS7RppM8OHJITimrNyGrSww.Bk61t5FZoil6pi/y"
-  },
-  {
-    "id": 4,
-    "username": "Karon Jimenez",
-    "password": "$2b$10$9bYQnYS.OBOevHWTMU4AaeAmvvWR9MHG/8x9UrDRwDuVsARr.CA2q"
+    "id": "f0733259-f873-48db-a569-6c8058597899",
+    "username": "Santiago Rois",
+    "password": "$2b$10$/s2bjSLZxl3AdJOSnqbPe.pgh21rD2BscvHrnapy1Sw884Q611LQ."
   }
 ]

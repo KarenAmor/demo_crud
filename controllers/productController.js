@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const databasePath = path.join(__dirname, '../data/products.json');
+const uuid = require('uuid'); 
 
 const manejarError = (res, message) => {
     console.error(message);
@@ -13,10 +14,26 @@ const leerProducto = (req, res) => {
             manejarError(res, 'Error al leer el archivo JSON:', err);
             return;
         }
+        
         const productos = JSON.parse(data);
-        res.status(200).json(productos);
+        const page = parseInt(req.query.page) || 1; // Página actual, valor predeterminado: 1
+        const perPage = parseInt(req.query.perPage) || 10; // Elementos por página, valor predeterminado: 10
+        
+        const startIndex = (page - 1) * perPage;
+        const endIndex = startIndex + perPage;
+        const paginatedProductos = productos.slice(startIndex, endIndex);
+        
+        const totalProductos = productos.length;
+        
+        res.status(200).json({
+            totalProductos,
+            totalPages: Math.ceil(totalProductos / perPage),
+            currentPage: page,
+            productos: paginatedProductos
+        });
     });
 };
+
 const obtenerCompanyName = (req, res) => {
     const company_name = req.params.company_name;
     fs.readFile(databasePath, 'utf8', (err, data) => {
@@ -24,12 +41,47 @@ const obtenerCompanyName = (req, res) => {
             manejarError(res, 'Error al leer el archivo JSON:', err);
             return;
         }
+        
         const companies = JSON.parse(data);
-        const company= companies.filter(company => company.company_name === company_name);
-        if (company) {
-            res.status(200).json(company);
+        const filteredCompanies = companies.filter(company =>
+            company.company_name && company.company_name.toLowerCase() && company.company_name.toLowerCase().includes(company_name.toLowerCase())
+        );
+
+        const totalResults = filteredCompanies.length;
+
+        if (totalResults > 0) {
+            res.status(200).json({
+                totalResults,
+                companies: filteredCompanies
+            });
         } else {
             res.status(404).json({ error: 'Compañia no encontrada' });
+        }
+    });
+};
+
+const obtenerProducto = (req, res) => {
+    const productName = req.params.product;
+    fs.readFile(databasePath, 'utf8', (err, data) => {
+        if (err) {
+            manejarError(res, 'Error al leer el archivo JSON:', err);
+            return;
+        }
+
+        const companies = JSON.parse(data);
+        const filteredCompanies = companies.filter(company =>
+            company.product && company.product.toLowerCase() && company.product.toLowerCase().includes(productName.toLowerCase())
+        );              
+
+        const totalProducts = filteredCompanies.length;
+
+        if (totalProducts > 0) {
+            res.status(200).json({
+                totalProducts,
+                companies: filteredCompanies
+            });
+        } else {
+            res.status(404).json({ error: 'Productos no encontrados' });
         }
     });
 };
@@ -41,13 +93,15 @@ const agregarProducto = (nuevoProducto, res) => {
             return;
         }
         const productos = JSON.parse(data);
+        const nuevoID = uuid.v4();
+        nuevoProducto.id = nuevoID;
         productos.push(nuevoProducto);
         fs.writeFile(databasePath, JSON.stringify(productos, null, 2), 'utf8', writeErr => {
             if (writeErr) {
                 manejarError(res, 'Error al escribir en el archivo JSON:', writeErr);
                 return;
             }
-            res.status(201).json({ message: 'Producto creado exitosamente' , producto: nuevoProducto  });
+            res.status(201).json({ message: 'Producto creado exitosamente', producto: nuevoProducto });
         });
     });
 };
@@ -101,7 +155,8 @@ const eliminarProducto = (id, res) => {
 
 module.exports = {
     leerProducto,
-    obtenerCompanyName,
+    obtenerCompanyName ,
+    obtenerProducto,
     agregarProducto,
     modificarProducto,
     eliminarProducto 

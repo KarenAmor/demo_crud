@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const uuid = require('uuid');
 const databasePath = path.join(__dirname, '../data/proveedor.json')
 
 const manejarError = (res, message) => {
@@ -10,16 +11,32 @@ const manejarError = (res, message) => {
 const leerProveedor = (req, res) => {
     fs.readFile(databasePath, 'utf8', (err, data) => {
         if (err) {
-            manejarError(res, 'Error al leer el archivo JSON:', err)
-            return
+            manejarError(res, 'Error al leer el archivo JSON:', err);
+            return;
         }
-        const proveedor = JSON.parse(data)
-        res.status(200).json(proveedor)
-    })
-}
+        
+        const proveedores = JSON.parse(data);
+        const page = parseInt(req.query.page) || 1; 
+        const perPage = parseInt(req.query.perPage) || 10; 
+        
+        const startIndex = (page - 1) * perPage;
+        const endIndex = startIndex + perPage;
+        const paginatedProveedores = proveedores.slice(startIndex, endIndex);
+        
+        const totalProveedores = proveedores.length;
+        
+        res.status(200).json({
+            totalProveedores,
+            totalPages: Math.ceil(totalProveedores / perPage),
+            currentPage: page,
+            proveedores: paginatedProveedores
+        });
+    });
+};
+
 
 const obtenerUnProveedor = (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = req.params.id; 
     fs.readFile(databasePath, 'utf8', (err, data) => {
         if (err) {
             manejarError(res, 'Error al leer el archivo JSON:', err);
@@ -41,9 +58,12 @@ const agregarProveedor = (nuevoProveedor, res) => {
             manejarError(res, 'Error al leer el archivo JSON:', err);
             return;
         }
-        const proveedor = JSON.parse(data);
-        proveedor.push(nuevoProveedor);
-        fs.writeFile(databasePath, JSON.stringify(proveedor, null, 2), 'utf8', writeErr => {
+        const proveedores = JSON.parse(data);
+        const nuevoID = uuid.v4();
+        nuevoProveedor.id = nuevoID;
+        proveedores.push(nuevoProveedor);
+        
+        fs.writeFile(databasePath, JSON.stringify(proveedores, null, 2), 'utf8', writeErr => {
             if (writeErr) {
                 manejarError(res, 'Error al escribir en el archivo JSON:', writeErr);
                 return;
@@ -52,6 +72,7 @@ const agregarProveedor = (nuevoProveedor, res) => {
         });
     });
 };
+
 
 const modificarProveedor = (nuevoProveedor, res) => {
     fs.readFile(databasePath, 'utf8', (err, data) => {

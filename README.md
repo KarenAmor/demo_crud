@@ -2,10 +2,13 @@
 
 Esta API permite gestionar proveedores y productos a través de operaciones CRUD (Crear, Leer, Actualizar, Eliminar). La API está diseñada utilizando Node.js y Express.
 
+## Librerias
+- uuid
+
 ## Uso
 
 1. Inicia el servidor: `node index.js`
-2. La API estará disponible en `http://localhost:3000`.
+2. La API estará disponible en ``.
 
 ## Rutas
 
@@ -19,11 +22,14 @@ Esta API permite gestionar proveedores y productos a través de operaciones CRUD
 
 ### Productos
 
+### Productos
+
 - `GET /productos`: Obtener todos los productos.
-- `GET /productos/:company_name`: Obtener productos por nombre de empresa.
+- `GET /productos/company/:company_name`: Obtener productos por nombre de empresa.
+- `GET /productos/product/:product`: Obtener productos por nombre de producto.
 - `POST /productos`: Agregar un nuevo producto.
 - `PUT /productos`: Modificar un producto existente.
-- `DELETE /productos`: Eliminar un producto por su nombre.
+- `DELETE /productos`: Eliminar un producto por su ID.
 
 ### Usuarios
 

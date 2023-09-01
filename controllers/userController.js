@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const fs = require('fs');
 const path = require('path'); 
+const uuid = require('uuid');
 const databasePath = path.join(__dirname, '../data/users.json'); 
 
 // Resto del código sigue igual...
@@ -18,9 +19,12 @@ const agregarUsuario = (nuevoUsuario, res) => {
             return;
         }
         
-        // Crear el objeto del nuevo usuario con la contraseña encriptada
+        // Genera un ID único para el nuevo usuario
+        const nuevoID = uuid.v4();
+        
+        // Crear el objeto del nuevo usuario con la contraseña encriptada y el ID único
         const usuarioEncriptado = {
-            id: nuevoUsuario.id,
+            id: nuevoID,
             username: nuevoUsuario.username,
             password: hash
         };
@@ -52,7 +56,7 @@ const agregarUsuario = (nuevoUsuario, res) => {
             });
         });
     });
-}
+};
 
 module.exports = {
     agregarUsuario,
